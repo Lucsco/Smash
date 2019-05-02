@@ -1,0 +1,252 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://Images/Mario/Mario_DASH.png" type="Texture" id=2]
+[ext_resource path="res://Images/Mario_IDLE.png" type="Texture" id=3]
+[ext_resource path="res://Images/Mario/Mario_JUMP.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.9217, 17.3805 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "dash"
+length = 4.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3.98083 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("anim:playback_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 8.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 3.0
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("anim:playback_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump_down"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("anim:playback_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 8.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "jump_up"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("anim:playback_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 8.0 ]
+}
+
+[node name="player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.51416, 1.16458 )
+texture = ExtResource( 2 )
+hframes = 8
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.487671, 1.46302 )
+shape = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+playback_speed = 8.0
+anims/dash = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump_down = SubResource( 4 )
+anims/jump_up = SubResource( 5 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+margin_left = -19.7789
+margin_top = -33.0328
+margin_right = 20.2211
+margin_bottom = -19.0328
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

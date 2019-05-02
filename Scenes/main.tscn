@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/stage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fonts/American Captain.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_color = Color( 1, 0, 0, 1 )
+extra_spacing_char = 5
+font_data = ExtResource( 4 )
+
+[node name="main" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="stage" parent="." instance=ExtResource( 2 )]
+position = Vector2( 388.716, 377.512 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 386.122, 179.648 )
+scale = Vector2( 1.5, 1.5 )
+GRAVITY = 45.0
+SPEED = 600.0
+JUMP_HEIGHT = 600.0
+
+[node name="game_label" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_left = 342.419
+margin_top = 223.044
+margin_right = 469.419
+margin_bottom = 287.044
+mouse_default_cursor_shape = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0.701961, 0.113725, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "GAME"
+
+[node name="GUI" parent="." instance=ExtResource( 5 )]
