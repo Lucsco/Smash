@@ -1,13 +1,24 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	print("manettes connectées : " + str(GLOBAL.manettes_connectees.size()))
+	$Time.wait_time = 75
+	$Time.start()
+	$GUI/VBoxContainer3/TextureProgress.show()
+	$GUI/VBoxContainer3/TextureProgress.value = $player.stock
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _physics_process(delta):
+	match_timer()
+	
+func match_timer():
+	var a = str(int($Time.time_left / 60))
+	var b = str(int($Time.time_left) % 60)
+	if  len(b) == 1:
+		b = "0" + b
+	var ms = a + " : " + b
+	$GUI/VBoxContainer/Timer.text = ms 
+
+func _on_player_die(stock):
+	var a = $GUI/VBoxContainer3/TextureProgress
+	a.value -= 1
+	

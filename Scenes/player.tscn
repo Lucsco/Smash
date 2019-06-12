@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://Images/Mario/Mario_DASH.png" type="Texture" id=2]
-[ext_resource path="res://Images/Mario_IDLE.png" type="Texture" id=3]
-[ext_resource path="res://Images/Mario/Mario_JUMP.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/mario.gd" type="Script" id=1]
+[ext_resource path="res://Images/Mario/Mario_JAB.png" type="Texture" id=2]
+[ext_resource path="res://Images/Mario/Mario_DASH.png" type="Texture" id=3]
+[ext_resource path="res://Images/Mario_IDLE.png" type="Texture" id=4]
+[ext_resource path="res://Images/Mario/Mario_JUMP.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10.9217, 17.3805 )
@@ -23,7 +24,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:frame")
@@ -88,7 +89,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:hframes")
@@ -116,7 +117,58 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "jump_down"
+resource_name = "jab"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("anim:playback_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6.0 ]
+}
+
+[sub_resource type="Animation" id=5]
 length = 1.5
 step = 0.5
 tracks/0/type = "value"
@@ -129,7 +181,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
@@ -168,8 +220,7 @@ tracks/3/keys = {
 "values": [ 8.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "jump_up"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -180,7 +231,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
@@ -219,28 +270,28 @@ tracks/3/keys = {
 "values": [ 8.0 ]
 }
 
-[node name="player" type="KinematicBody2D"]
+[sub_resource type="CircleShape2D" id=7]
+radius = 8.70548
+
+[node name="mario" type="KinematicBody2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.51416, 1.16458 )
 texture = ExtResource( 2 )
-hframes = 8
-frame = 2
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.487671, 1.46302 )
 shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-playback_speed = 8.0
+playback_speed = 6.0
 anims/dash = SubResource( 2 )
 anims/idle = SubResource( 3 )
-anims/jump_down = SubResource( 4 )
-anims/jump_up = SubResource( 5 )
+anims/jab = SubResource( 4 )
+anims/jump_down = SubResource( 5 )
+anims/jump_up = SubResource( 6 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
@@ -249,4 +300,11 @@ margin_left = -19.7789
 margin_top = -33.0328
 margin_right = 20.2211
 margin_bottom = -19.0328
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 12, 0 )
+shape = SubResource( 7 )
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

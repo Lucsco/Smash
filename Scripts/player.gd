@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
-export (float) var GRAVITY
-export (float) var SPEED
-export (float) var JUMP_HEIGHT
+signal die(stock)
+
+export (float) var GRAVITY = 35
+export (float) var SPEED = 300 
+export (float) var JUMP_HEIGHT = 500
 
 var stock = 3
 var jump_count = 0
@@ -20,21 +22,22 @@ func _physics_process(delta):
 	movement_loop()
 	jump_loop()
 	move_and_slide(velocity, Vector2(0,-1))
-
+	
 func movement_loop():
-	var LEFT  = Input.is_action_pressed("left")
-	var RIGHT = Input.is_action_pressed("right")
-	var DOWN  = Input.is_action_pressed("down")
-	var UP    = Input.is_action_pressed("up")
+	var LEFT  = Input.get_action_strength("left")
+	var RIGHT = Input.get_action_strength("right")
+	var DOWN  = Input.get_action_strength("down")
+	var UP    = Input.get_action_strength("up")
 	
 	if velocity.y <= JUMP_HEIGHT:
 		velocity.y += GRAVITY
-	velocity.x = int(RIGHT) * SPEED - int(LEFT) * SPEED
+	velocity.x = RIGHT * SPEED - LEFT * SPEED
 	if state in[IDLE,DASH]:
 		if velocity.x < 0:
 			$Sprite.flip_h = true
 		elif velocity.x > 0:
 			$Sprite.flip_h = false
+
 		
 var can_jump := true
 
@@ -80,12 +83,13 @@ func state_loop():
 		$Label.text = str(state)
 			
 func after_die():
+	emit_signal("die", stock)
+	stock -= 1
 	if stock == 0:
-		get_parent().get_node("game_label").show()
+		get_parent().get_node("GUI/VBoxContainer2/Game").show()
 		get_tree().paused = true
 		yield(get_tree().create_timer(2), "timeout")
 	if not stock == 0:
-		stock -= 1
 		position = Vector2(386, 144)
 		while yield(get_tree().create_timer(2),"timeout") or Input.is_action_just_pressed("down"):
 			animation_play("idle")
